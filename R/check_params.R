@@ -84,6 +84,42 @@ check_category_widget <- function(category, widget) {
   }
 }
 
+region <- c("peninsular", "canarias", "baleares", "ceuta", "melilla",
+            "Andalucía", "Aragón", "Cantabria", "Castilla la Mancha",
+            "Castilla y León", "Cataluña", "País Vasco",
+            "Principado de Asturias", "Comunidad de Ceuta",
+            "Comunidad de Melilla", "Comunidad de Madrid",
+            "Comunidad de Navarra", "Comunidad Valenciana", "Extremadura",
+            "Galicia", "Islas Baleares", "Islas Canarias", "La Rioja",
+            "Región de Murcia")
+
+geo_id <- c(8741, 8742, 8743, 8744, 8745, 4, 5, 6, 7, 8, 9, 10, 11, 8744, 8745,
+            13, 14, 15, 16, 17, 8743, 8742, 20, 21)
+geo_limit <- c("peninsular", "canarias", "baleares", "ceuta", "melilla", "ccaa",
+               "ccaa", "ccaa", "ccaa", "ccaa", "ccaa", "ccaa", "ccaa", "ccaa",
+               "ccaa", "ccaa", "ccaa", "ccaa", "ccaa", "ccaa", "ccaa", "ccaa",
+               "ccaa", "ccaa")
+ree_geo <- data.frame(region, geo_limit, geo_id)
+
+check_geo_limit <- function(geo_limit) {
+  match.arg(geo_limit, ree_geo$geo_limit)
+}
+check_geo_region <- function(region) {
+  match.arg(region, ree_geo$region)
+}
+
+ree_region <- function(region) {
+  r <- which(check_geo_region(region) == ree_geo$region)
+  ree_geo[r, c("geo_id", "geo_limit")]
+}
+# 2014-01-01T00:00
+ree_date <- function(date) {
+  if (is(date, "Date")) {
+    return(strftime(date , "%Y-%m-%dT%H:%M"))
+  }
+  date
+}
+
 # ESIOS ####
 
 check_time_trunc <- function(time_trunc) {
