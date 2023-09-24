@@ -9,6 +9,7 @@ prep_esios <- function(path, ..., token = NULL) {
     req_url_path_append(path) |>
     req_url_query(...) |>
     req_method("GET") |>
+    req_error(body = esios_error) |>
     req_headers(
       Accept = paste0(accept, collapse = "; "),
       `x-api-key` = token
@@ -25,5 +26,22 @@ prep_ree <- function(path, ...) {
     req_method("GET") |>
     req_headers(Accept = "application/json;",
                 `Content-Type` = "application/json") |>
+    req_error(body = ree_error) |>
     req_throttle(10 / 60)
+}
+
+ree_error <- function(resp) {
+  errors <- resp_body_json(resp)$errors
+  errors_msgs <- vapply(errors, function(x) {
+    paste0(x["title"], " (", x["code"], "): ", x["detail"])
+  }, character(1L))
+  errors_msgs
+}
+
+esios_error <- function(resp) {
+  errors <- resp_body_json(resp)$errors
+  errors_msgs <- vapply(errors, function(x) {
+    paste0(x["title"], " (", x["code"], "): ", x["detail"])
+  }, character(1L))
+  errors_msgs
 }
