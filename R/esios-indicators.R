@@ -25,7 +25,7 @@ esios_search_indicators <- function(text = NULL, taxonomy_terms = NULL, taxonomy
   out <- resp_body_json(ind)
   indic <- do.call(rbind, lapply(out$indicators, list2DF))
   # Extract hour from the text
-  s <- strsplit(indic$description, split = "Publicaci(&oacute;|ó)n:")
+  s <- strsplit(indic$description, split = "Publicaci(&oacute;|\u00F3)n:")
   v <- mapply(getElement, s, lengths(s))
   r <- extract_hour(v)
 
@@ -93,7 +93,7 @@ esios_indicators <- function(indicator, locale = NULL, datetime = NULL,
 #'
 #' @inheritParams esios_indicators
 #'
-#' @return A data.frame with value (€/MWh), datetime, datetime_utc, tz_time,
+#' @return A data.frame with value ( €/MWh), datetime, datetime_utc, tz_time,
 #' geo_id and geo_name.
 #' @seealso [esios_indicators()]
 #' @export

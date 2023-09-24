@@ -44,14 +44,14 @@ when the geo_agg is informed. Accepted values: 'country', 'electric_system',
 'drainage_basin'.}
 }
 \value{
-A data.frame with value (€/MWh), datetime, datetime_utc, tz_time,
+A data.frame with value ( €/MWh), datetime, datetime_utc, tz_time,
 geo_id and geo_name.
 }
 \description{
 This is a shortcut for \code{esios_indicators("1001")} with some parsing.
 }
 \examples{
-e <- esios_pvp(geo_ids = "8741")
+e <- esios_pvp()
 }
 \seealso{
 \code{\link[=esios_indicators]{esios_indicators()}}

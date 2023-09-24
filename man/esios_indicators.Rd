@@ -54,6 +54,9 @@ Retrieve the information of any indicator based on the id.
 esios_indicators(1001)
 }
 }
+\references{
+\url{https://api.esios.ree.es/}
+}
 \seealso{
 \code{\link[=esios_search_indicators]{esios_search_indicators()}}
 }
