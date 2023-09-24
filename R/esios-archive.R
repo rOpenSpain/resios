@@ -29,6 +29,14 @@ esios_archives <- function() {
   out$taxonomy_terms <- lapply(seq_len(NROW(resp)), function(x) {
                            do.call(rbind, lapply(resp$taxonomy_terms[[x]], list2DF))
     })
+  out$name <- unlist(out$name, FALSE, FALSE)
+  out$id <- unlist(out$id, FALSE, FALSE)
+  out$horizon <- unlist(out$horizon, FALSE, FALSE)
+  out$archive_type <- unlist(out$archive_type, FALSE, FALSE)
+  out$date <- strptime(out$date, format = "%Y-%m-%dT%H:%M:%OS")
+  out$date_time1 <- strptime(out$date_time1, format = "%Y-%m-%d")
+  out$date_time2 <- strptime(out$date_time2, format = "%Y-%m-%d")
+
   rownames(out) <- NULL
   out
 
