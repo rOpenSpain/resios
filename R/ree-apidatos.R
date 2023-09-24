@@ -11,8 +11,10 @@
 #' @param region One of `c("peninsular", "canarias", "baleares", "ceuta",
 #' "melilla")` or the official name of a CCAA (one of `get_ree_ccaa()`).
 #' @param ... Other arguments passed to `httr2::req_url_query()`.
+#' @param parse Decide if the function should try to parse the result or not
+#'   (By default TRUE).
 #'
-#' @return
+#' @returns A data.frame by default or a list if `parse = FALSE`.
 #' @export
 #'
 #' @examples

@@ -31,3 +31,50 @@ devtools::install_github("llrs/resios")
 ```
 
 ## Example
+
+We need to load the library and prepare the token for the session.
+See the `get_token()` help page for information about how to do that.
+
+```{r}
+library("resios")
+get_token()
+```
+
+Once ready we can look for some indicators (also to check that our token works):
+
+```{r}
+ei <- esios_search_indicators()
+head(ei)
+```
+
+There are many indicators (`r NROW(ei)`) and as you can see some are updated quite frequently daily.
+Others the date is unclear and you should read the last sentence of the description.
+
+The one probably more interesting is the price of electricity in the state contract (updated each day at 20:20).
+There is a direct function for that one:
+
+```{r}
+ei[ei$id == "1001", -2]
+head(esios_pvp())
+```
+
+You can filter and plot it. 
+
+## REE
+
+You can also query the Red Eléctrica Española directly (it doesn't require to get a token):
+
+```{r}
+rc0 <- ree_call(widget = "demanda-tiempo-real", category = "demanda")
+plot(rc0$`Demanda real`$datetime, rc0$`Demanda real`$value, type = "l", pch = 2,
+     main = "Electricity demand in peninsular Spain", 
+     xlab = "Time", ylab = "Value (?)")
+lines(rc0$`Demanda programada`$datetime, rc0$`Demanda programada`$value, 
+      type = "l", col = "blue", lty = 2)
+lines(rc0$`Demanda prevista`$datetime, rc0$`Demanda prevista`$value, 
+      type = "l", col = "red", lty = 3)
+abline(h = Sys.time(), col = "black")
+legend("topleft", legend = c("real", "foreseen", "programmed"), 
+       fill = c("black", "red", "blue"))
+```
+

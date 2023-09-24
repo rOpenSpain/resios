@@ -35,7 +35,13 @@ ree_call(
 
 \item{lang}{Language: either "es" or "en".}
 
+\item{parse}{Decide if the function should try to parse the result or not
+(By default TRUE).}
+
 \item{...}{Other arguments passed to \code{httr2::req_url_query()}.}
+}
+\value{
+A data.frame by default or a list if \code{parse = FALSE}.
 }
 \description{
 Retrieve data from Red Electrica Española.
