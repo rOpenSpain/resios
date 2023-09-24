@@ -15,7 +15,8 @@ BugReports: https://github.com/llrs/resios/issues
 Depends: 
     R (>= 4.2)
 Imports: 
-    httr2 (>= 0.2.3)
+    httr2 (>= 0.2.3),
+    methods
 Suggests: 
     testthat (>= 3.0.0)
 Config/Needs/website: rmarkdown

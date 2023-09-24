@@ -52,15 +52,15 @@ rc <- ree_call(start_date = as.Date("2018-01-01"),
                time_trunc = "month",
                region = "peninsular", lang = "en",
                category = "demanda", widget = "ire-general")
-rc2 <- ree_call(category = "balance", widget = "balance-electrico",
-                start_date = "2022-12-31T23:59",
-                region = "peninsular", lang = "en", time_trunc = "day")
-rc3 <- ree_call(lang = "es",
-                category = "generacion",
-                widget = "estructura-generacion",
-                start_date = "2014-01-01T00:00",
-                end_date = "2018-12-31T23:59",
-                time_trunc = "year",
-                geo_trunc = "electric_system",
-                region = "Castilla la Mancha")
+# rc2 <- ree_call(category = "balance", widget = "balance-electrico",
+#                 start_date = "2022-12-31T23:59",
+#                 region = "peninsular", lang = "en", time_trunc = "day")
+# rc3 <- ree_call(lang = "es",
+#                 category = "generacion",
+#                 widget = "estructura-generacion",
+#                 start_date = "2014-01-01T00:00",
+#                 end_date = "2018-12-31T23:59",
+#                 time_trunc = "year",
+#                 geo_trunc = "electric_system",
+#                 region = "Castilla la Mancha")
 }

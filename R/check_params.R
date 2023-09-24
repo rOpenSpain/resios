@@ -85,13 +85,13 @@ check_category_widget <- function(category, widget) {
 }
 
 region <- c("peninsular", "canarias", "baleares", "ceuta", "melilla",
-            "Andalucía", "Aragón", "Cantabria", "Castilla la Mancha",
-            "Castilla y León", "Cataluña", "País Vasco",
+            "Andaluc\u00EDa", "Arag\u00F3n", "Cantabria", "Castilla la Mancha",
+            "Castilla y Le\u00F3n", "Catalu\u00F1a", "Pa\u00EDs Vasco",
             "Principado de Asturias", "Comunidad de Ceuta",
             "Comunidad de Melilla", "Comunidad de Madrid",
             "Comunidad de Navarra", "Comunidad Valenciana", "Extremadura",
             "Galicia", "Islas Baleares", "Islas Canarias", "La Rioja",
-            "Región de Murcia")
+            "Regi\u00F3n de Murcia")
 
 geo_id <- c(8741, 8742, 8743, 8744, 8745, 4, 5, 6, 7, 8, 9, 10, 11, 8744, 8745,
             13, 14, 15, 16, 17, 8743, 8742, 20, 21)
@@ -114,7 +114,7 @@ ree_region <- function(region) {
 }
 # 2014-01-01T00:00
 ree_date <- function(date) {
-  if (is(date, "Date")) {
+  if (methods::is(date, "Date")) {
     return(strftime(date , "%Y-%m-%dT%H:%M"))
   }
   date
