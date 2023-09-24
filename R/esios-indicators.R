@@ -63,7 +63,8 @@ esios_search_indicators <- function(text = NULL, taxonomy_terms = NULL, taxonomy
 #' @references <https://api.esios.ree.es/>
 #' @examples
 #' \donttest{
-#' esios_indicators(1001)
+#' ei10001 <- esios_indicators(10001)
+#' ei1700 <- esios_indicators(1700)
 #' }
 esios_indicators <- function(indicator, locale = NULL, datetime = NULL,
                              start_date =  NULL, end_date =  NULL,
