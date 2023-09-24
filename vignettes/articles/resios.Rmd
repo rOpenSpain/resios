@@ -1,0 +1,46 @@
+---
+title: "resios"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(resios)
+```
+
+# RESIOS
+
+To retrieve data you need to [ask for it via email](consultasios@ree.es).
+You can find the official [help page for the API](https://api.esios.ree.es/doc/index.html) with many examples.
+
+Once you get the token I recommend to save it in your .Renviron file (if you only will use R to retrieve data)
+
+```{r esios-archives}
+get_token()
+ea <- esios_archives()
+head(ea)
+```
+
+Besides the archives you can get daily data from the more than 1900 indicators available:
+
+```{r esios-indicators}
+ei_df <- esios_search_indicators()
+dim(ei_df)
+head(ei_df)
+```
+
+Some of them are really interesting, like the price per MWh
+
+```{r}
+ei <- esios_indicators(1001)
+library("ggplot2")
+ggplot(ei) +
+  geom_path(aes(tz_time, value, col = geo_name))
+```
+
+# REE
