@@ -51,7 +51,8 @@ Retrieve the information of any indicator based on the id.
 }
 \examples{
 \donttest{
-esios_indicators(1001)
+ei10001 <- esios_indicators(10001)
+ei1700 <- esios_indicators(1700)
 }
 }
 \references{
