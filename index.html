@@ -5,18 +5,20 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Provides functions to retrieve and use easily data from Red
-    Electrica Española the which operates the national electricity grid in
-    Spain.">
-<title>Interacts with ESIOS API • resios</title>
+<meta name="description" content='Provides functions to retrieve and use easily data from Red
+    Electrica Española (REE) the which operates the national electricity
+    grid in Spain. The REE also provides ESIOS from electronic-"Sistema de
+    Información del Operador del Sistema", which is also covered here.'>
+<title>Interacts with REE and ESIOS API • resios</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Interacts with ESIOS API">
-<meta property="og:description" content="Provides functions to retrieve and use easily data from Red
-    Electrica Española the which operates the national electricity grid in
-    Spain.">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Interacts with REE and ESIOS API">
+<meta property="og:description" content='Provides functions to retrieve and use easily data from Red
+    Electrica Española (REE) the which operates the national electricity
+    grid in Spain. The REE also provides ESIOS from electronic-"Sistema de
+    Información del Operador del Sistema", which is also covered here.'>
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -30,7 +32,7 @@
     
     <a class="navbar-brand me-2" href="index.html">resios</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +42,13 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
+  <a class="nav-link" href="articles/resios.html">Get started</a>
+</li>
+<li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" href="news/index.html">Changelog</a>
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
@@ -75,11 +83,92 @@
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"llrs/resios"</span><span class="op">)</span></span></code></pre></div>
 </div>
+</div>
+<div class="section level1">
+<h1 id="status">Status<a class="anchor" aria-label="anchor" href="#status"></a>
+</h1>
+<p>This packages includes the minimal functions to make it usable for me. If anyone want to query some other data and the parser do not work well, open an issue and I’ll try to fix it.</p>
 <div class="section level2">
-<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+<h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
+<p>We need to load the library and prepare the token for the session. See the <code><a href="reference/get_token.html">get_token()</a></code> help page for information about how to do that.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/llrs/resios" class="external-link">"resios"</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/get_token.html">get_token</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>Once ready we can look for some indicators (also to check that our token works):</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ei</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/esios_search_indicators.html">esios_search_indicators</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ei</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                                                                  name</span></span>
+<span><span class="co">#&gt; 1                            Generación programada PBF Hidráulica UGH</span></span>
+<span><span class="co">#&gt; 2                         Generación programada PBF Hidráulica no UGH</span></span>
+<span><span class="co">#&gt; 3                        Generación programada PBF Turbinación bombeo</span></span>
+<span><span class="co">#&gt; 4                                   Generación programada PBF Nuclear</span></span>
+<span><span class="co">#&gt; 5      Generación programada PBF Hulla antracita Anexo II RD 134/2010</span></span>
+<span><span class="co">#&gt; 6 Generación programada PBF Hulla sub-bituminosa Anexo II RD 134/2010</span></span>
+<span><span class="co">#&gt;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                description</span></span>
+<span><span class="co">#&gt; 1                            &lt;p&gt;Es el programa de energía diario, con desglose horario, de las diferentes Unidades de Programación correspondientes a ventas y adquisiciones de energía en el sistema eléctrico peninsular español. En concreto este indicador se refiere a las unidades de programación con tipo de producción hidráulica UGH.&lt;/p&gt;&lt;p&gt;Este programa es establecido por el OS a partir de la casación del OM y de las nominaciones de programas de todas y cada una de las Unidades de Programación que le han sido comunicadas por los sujetos titulares de dichas Unidades de Programación, incluyendo las correspondientes a la ejecución de contratos bilaterales con entrega física de los cuales se ha confirmado la ejecución.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Publicación:&lt;/b&gt; diariamente a partir de las 13:45 horas con la información del día D+1.&lt;/p&gt;</span></span>
+<span><span class="co">#&gt; 2                         &lt;p&gt;Es el programa de energía diario, con desglose horario, de las diferentes Unidades de Programación correspondientes a ventas y adquisiciones de energía en el sistema eléctrico peninsular español. En concreto este indicador se refiere a las unidades de programación con tipo de producción hidráulica no UGH.&lt;/p&gt;&lt;p&gt;Este programa es establecido por el OS a partir de la casación del OM y de las nominaciones de programas de todas y cada una de las Unidades de Programación que le han sido comunicadas por los sujetos titulares de dichas Unidades de Programación, incluyendo las correspondientes a la ejecución de contratos bilaterales con entrega física de los cuales se ha confirmado la ejecución.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Publicación:&lt;/b&gt; diariamente a partir de las 13:45 horas con la información del día D+1.&lt;/p&gt;</span></span>
+<span><span class="co">#&gt; 3                        &lt;p&gt;Es el programa de energía diario, con desglose horario, de las diferentes Unidades de Programación correspondientes a ventas y adquisiciones de energía en el sistema eléctrico peninsular español. En concreto este indicador se refiere a las unidades de programación con tipo de producción turbinación bombeo.&lt;/p&gt;&lt;p&gt;Este programa es establecido por el OS a partir de la casación del OM y de las nominaciones de programas de todas y cada una de las Unidades de Programación que le han sido comunicadas por los sujetos titulares de dichas Unidades de Programación, incluyendo las correspondientes a la ejecución de contratos bilaterales con entrega física de los cuales se ha confirmado la ejecución.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Publicación:&lt;/b&gt; diariamente a partir de las 13:45 horas con la información del día D+1.&lt;/p&gt;</span></span>
+<span><span class="co">#&gt; 4                                   &lt;p&gt;Es el programa de energía diario, con desglose horario, de las diferentes Unidades de Programación correspondientes a ventas y adquisiciones de energía en el sistema eléctrico peninsular español. En concreto este indicador se refiere a las unidades de programación con tipo de producción nuclear.&lt;/p&gt;&lt;p&gt;Este programa es establecido por el OS a partir de la casación del OM y de las nominaciones de programas de todas y cada una de las Unidades de Programación que le han sido comunicadas por los sujetos titulares de dichas Unidades de Programación, incluyendo las correspondientes a la ejecución de contratos bilaterales con entrega física de los cuales se ha confirmado la ejecución.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Publicación:&lt;/b&gt; diariamente a partir de las 13:45 horas con la información del día D+1.&lt;/p&gt;</span></span>
+<span><span class="co">#&gt; 5      &lt;p&gt;Es el programa de energía diario, con desglose horario, de las diferentes Unidades de Programación correspondientes a ventas y adquisiciones de energía en el sistema eléctrico peninsular español. En concreto este indicador se refiere a las unidades de programación con tipo de producción Hulla antracita Anexo II RD 134/2010.&lt;/p&gt;&lt;p&gt;Este programa es establecido por el OS a partir de la casación del OM y de las nominaciones de programas de todas y cada una de las Unidades de Programación que le han sido comunicadas por los sujetos titulares de dichas Unidades de Programación, incluyendo las correspondientes a la ejecución de contratos bilaterales con entrega física de los cuales se ha confirmado la ejecución.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Publicación:&lt;/b&gt; diariamente a partir de las 13:45 horas con la información del día D+1.&lt;/p&gt;</span></span>
+<span><span class="co">#&gt; 6 &lt;p&gt;Es el programa de energía diario, con desglose horario, de las diferentes Unidades de Programación correspondientes a ventas y adquisiciones de energía en el sistema eléctrico peninsular español. En concreto este indicador se refiere a las unidades de programación con tipo de producción Hulla sub-bituminosa Anexo II RD 134/2010.&lt;/p&gt;&lt;p&gt;Este programa es establecido por el OS a partir de la casación del OM y de las nominaciones de programas de todas y cada una de las Unidades de Programación que le han sido comunicadas por los sujetos titulares de dichas Unidades de Programación, incluyendo las correspondientes a la ejecución de contratos bilaterales con entrega física de los cuales se ha confirmado la ejecución.&lt;/p&gt;&lt;p&gt;&lt;b&gt;Publicación:&lt;/b&gt; diariamente a partir de las 13:45 horas con la información del día D+1.&lt;/p&gt;</span></span>
+<span><span class="co">#&gt;                         short_name id renew</span></span>
+<span><span class="co">#&gt; 1                   Hidráulica UGH  1 13:45</span></span>
+<span><span class="co">#&gt; 2                Hidráulica no UGH  2 13:45</span></span>
+<span><span class="co">#&gt; 3               Turbinación bombeo  3 13:45</span></span>
+<span><span class="co">#&gt; 4                          Nuclear  4 13:45</span></span>
+<span><span class="co">#&gt; 5      Hulla antracita RD 134/2010  5 13:45</span></span>
+<span><span class="co">#&gt; 6 Hulla sub-bituminosa RD 134/2010  6 13:45</span></span></code></pre></div>
+<p>There are many indicators (1908) and as you can see some are updated quite frequently daily. Others the date is unclear and you should read the last sentence of the description.</p>
+<p>The one probably more interesting is the price of electricity in the state contract (updated each day at 20:20). There is a direct function for that one:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ei</span><span class="op">[</span><span class="va">ei</span><span class="op">$</span><span class="va">id</span> <span class="op">==</span> <span class="st">"1001"</span>, <span class="op">-</span><span class="fl">2</span><span class="op">]</span></span>
+<span><span class="co">#&gt;                                                        name    short_name   id</span></span>
+<span><span class="co">#&gt; 913 Término de facturación de energía activa del PVPC 2.0TD PVPC T. 2.0TD 1001</span></span>
+<span><span class="co">#&gt;     renew</span></span>
+<span><span class="co">#&gt; 913 20:20</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="reference/esios_pvpc.html">esios_pvpc</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Waiting 4s for throttling delay ■■■■■■■■</span></span>
+<span><span class="co">#&gt; Waiting 4s for throttling delay ■■■■■■■■■■■</span></span>
+<span><span class="co">#&gt; Waiting 4s for throttling delay ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■</span></span>
+<span><span class="co">#&gt;    value            datetime        datetime_utc             tz_time geo_id</span></span>
+<span><span class="co">#&gt; 1 166.33 2023-09-25 00:00:00 2023-09-24 22:00:00 2023-09-24 22:00:00   8741</span></span>
+<span><span class="co">#&gt; 2 166.33 2023-09-25 00:00:00 2023-09-24 22:00:00 2023-09-24 22:00:00   8742</span></span>
+<span><span class="co">#&gt; 3 166.33 2023-09-25 00:00:00 2023-09-24 22:00:00 2023-09-24 22:00:00   8743</span></span>
+<span><span class="co">#&gt; 4 166.33 2023-09-25 00:00:00 2023-09-24 22:00:00 2023-09-24 22:00:00   8744</span></span>
+<span><span class="co">#&gt; 5 166.33 2023-09-25 00:00:00 2023-09-24 22:00:00 2023-09-24 22:00:00   8745</span></span>
+<span><span class="co">#&gt; 6 153.60 2023-09-25 01:00:00 2023-09-24 23:00:00 2023-09-24 23:00:00   8741</span></span>
+<span><span class="co">#&gt;    geo_name</span></span>
+<span><span class="co">#&gt; 1 Península</span></span>
+<span><span class="co">#&gt; 2  Canarias</span></span>
+<span><span class="co">#&gt; 3  Baleares</span></span>
+<span><span class="co">#&gt; 4     Ceuta</span></span>
+<span><span class="co">#&gt; 5   Melilla</span></span>
+<span><span class="co">#&gt; 6 Península</span></span></code></pre></div>
+<p>You can filter and plot it.</p>
+</div>
+<div class="section level2">
+<h2 id="ree">REE<a class="anchor" aria-label="anchor" href="#ree"></a>
+</h2>
+<p>You can also query the Red Eléctrica Española directly (it doesn’t require to get a token):</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">rc0</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/ree_call.html">ree_call</a></span><span class="op">(</span>widget <span class="op">=</span> <span class="st">"demanda-tiempo-real"</span>, category <span class="op">=</span> <span class="st">"demanda"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Last updated: 2023-09-25 00:00:00</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">rc0</span><span class="op">$</span><span class="va">`Demanda real`</span><span class="op">$</span><span class="va">datetime</span>, <span class="va">rc0</span><span class="op">$</span><span class="va">`Demanda real`</span><span class="op">$</span><span class="va">value</span>, type <span class="op">=</span> <span class="st">"l"</span>, pch <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>     main <span class="op">=</span> <span class="st">"Electricity demand in peninsular Spain"</span>, </span>
+<span>     xlab <span class="op">=</span> <span class="st">"Time"</span>, ylab <span class="op">=</span> <span class="st">"Value (?)"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">rc0</span><span class="op">$</span><span class="va">`Demanda programada`</span><span class="op">$</span><span class="va">datetime</span>, <span class="va">rc0</span><span class="op">$</span><span class="va">`Demanda programada`</span><span class="op">$</span><span class="va">value</span>, </span>
+<span>      type <span class="op">=</span> <span class="st">"l"</span>, col <span class="op">=</span> <span class="st">"blue"</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">rc0</span><span class="op">$</span><span class="va">`Demanda prevista`</span><span class="op">$</span><span class="va">datetime</span>, <span class="va">rc0</span><span class="op">$</span><span class="va">`Demanda prevista`</span><span class="op">$</span><span class="va">value</span>, </span>
+<span>      type <span class="op">=</span> <span class="st">"l"</span>, col <span class="op">=</span> <span class="st">"red"</span>, lty <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"black"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"real"</span>, <span class="st">"foreseen"</span>, <span class="st">"programmed"</span><span class="op">)</span>, </span>
+<span>       fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/README-ree-1.png" width="100%"></p>
 </div>
 </div>
+
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">

@@ -10,15 +10,45 @@
     <loc>https://llrs.github.io/resios/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://llrs.github.io/resios/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://llrs.github.io/resios/articles/resios.html</loc>
+  </url>
+  <url>
     <loc>https://llrs.github.io/resios/authors.html</loc>
   </url>
   <url>
     <loc>https://llrs.github.io/resios/index.html</loc>
   </url>
   <url>
-    <loc>https://llrs.github.io/resios/reference/hello.html</loc>
+    <loc>https://llrs.github.io/resios/news/index.html</loc>
+  </url>
+  <url>
+    <loc>https://llrs.github.io/resios/reference/esios_archives.html</loc>
+  </url>
+  <url>
+    <loc>https://llrs.github.io/resios/reference/esios_indicators.html</loc>
+  </url>
+  <url>
+    <loc>https://llrs.github.io/resios/reference/esios_pvpc.html</loc>
+  </url>
+  <url>
+    <loc>https://llrs.github.io/resios/reference/esios_search_indicators.html</loc>
+  </url>
+  <url>
+    <loc>https://llrs.github.io/resios/reference/get_ree_ccaa.html</loc>
+  </url>
+  <url>
+    <loc>https://llrs.github.io/resios/reference/get_token.html</loc>
   </url>
   <url>
     <loc>https://llrs.github.io/resios/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://llrs.github.io/resios/reference/ree_call.html</loc>
+  </url>
+  <url>
+    <loc>https://llrs.github.io/resios/reference/resios-package.html</loc>
   </url>
 </urlset>
