@@ -30,19 +30,24 @@ You can install the development version of resios from [GitHub](https://github.c
 devtools::install_github("llrs/resios")
 ```
 
-## Example
+# Status
+
+This packages includes the minimal functions to make it usable for me.
+If anyone want to query some other data and the parser do not work well, open an issue and I'll try to fix it. 
+
+## Examples
 
 We need to load the library and prepare the token for the session.
 See the `get_token()` help page for information about how to do that.
 
-```{r}
+```{r load}
 library("resios")
 get_token()
 ```
 
 Once ready we can look for some indicators (also to check that our token works):
 
-```{r}
+```{r search_indicators}
 ei <- esios_search_indicators()
 head(ei)
 ```
@@ -53,9 +58,9 @@ Others the date is unclear and you should read the last sentence of the descript
 The one probably more interesting is the price of electricity in the state contract (updated each day at 20:20).
 There is a direct function for that one:
 
-```{r}
+```{r pvpc}
 ei[ei$id == "1001", -2]
-head(esios_pvp())
+head(esios_pvpc())
 ```
 
 You can filter and plot it. 
@@ -64,7 +69,7 @@ You can filter and plot it.
 
 You can also query the Red Eléctrica Española directly (it doesn't require to get a token):
 
-```{r}
+```{r ree}
 rc0 <- ree_call(widget = "demanda-tiempo-real", category = "demanda")
 plot(rc0$`Demanda real`$datetime, rc0$`Demanda real`$value, type = "l", pch = 2,
      main = "Electricity demand in peninsular Spain", 

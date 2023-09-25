@@ -21,7 +21,13 @@ You can install the development version of resios from
 devtools::install_github("llrs/resios")
 ```
 
-## Example
+# Status
+
+This packages includes the minimal functions to make it usable for me.
+If anyone want to query some other data and the parser do not work well,
+open an issue and I’ll try to fix it.
+
+## Examples
 
 We need to load the library and prepare the token for the session. See
 the `get_token()` help page for information about how to do that.
@@ -74,10 +80,10 @@ ei[ei$id == "1001", -2]
 #> 913 Término de facturación de energía activa del PVPC 2.0TD PVPC T. 2.0TD 1001
 #>     renew
 #> 913 20:20
-head(esios_pvp())
-#> Waiting 5s for throttling delay ■■■■■■
-#> Waiting 5s for throttling delay ■■■■■■■■■■■■■■■■■■■■■■■■
-#> Waiting 5s for throttling delay ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
+head(esios_pvpc())
+#> Waiting 4s for throttling delay ■■■■■■■■
+#> Waiting 4s for throttling delay ■■■■■■■■■■■
+#> Waiting 4s for throttling delay ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 #>    value            datetime        datetime_utc             tz_time geo_id
 #> 1 166.33 2023-09-25 00:00:00 2023-09-24 22:00:00 2023-09-24 22:00:00   8741
 #> 2 166.33 2023-09-25 00:00:00 2023-09-24 22:00:00 2023-09-24 22:00:00   8742
@@ -116,4 +122,4 @@ legend("topleft", legend = c("real", "foreseen", "programmed"),
        fill = c("black", "red", "blue"))
 ```
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+<img src="man/figures/README-ree-1.png" width="100%" />

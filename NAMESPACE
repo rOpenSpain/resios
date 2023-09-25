@@ -2,7 +2,7 @@
 
 export(esios_archives)
 export(esios_indicators)
-export(esios_pvp)
+export(esios_pvpc)
 export(esios_search_indicators)
 export(get_ree_ccaa)
 export(get_token)

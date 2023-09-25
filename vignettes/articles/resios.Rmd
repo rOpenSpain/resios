@@ -36,11 +36,36 @@ head(ei_df)
 
 Some of them are really interesting, like the price per MWh
 
-```{r}
-ei <- esios_indicators(1001)
+```{r pvpc}
+ei <- esios_pvpc()
 library("ggplot2")
 ggplot(ei) +
-  geom_path(aes(tz_time, value, col = geo_name))
+  geom_path(aes(tz_time, value, col = geo_name, linetype = geo_name)) +
+  theme_minimal() +
+  labs(y = "€/MWh", x = "Hour", title = "Price per time", 
+       col = "Region", linetype = "Region") +
+  scale_y_continuous(sec.axis = sec_axis(trans = function(x){x/1000}, name = "€/KWh", 
+                                         labels = scales::label_number(accuracy = 0.01, suffix = "€"))) +
+  scale_x_datetime(date_breaks = "4 hours", date_labels = "%H") +
+  theme(legend.position = "bottom", legend.direction = "horizontal")
+  
 ```
 
 # REE
+
+You can also query the Red Electrica Española which have also very interesting data.
+
+```{r}
+rc0 <- ree_call(widget = "demanda-tiempo-real", category = "demanda")
+plot(rc0$`Demanda real`$datetime, rc0$`Demanda real`$value, type = "l", pch = 2,
+     main = "Electricity demand in peninsular Spain", 
+     xlab = "Time", ylab = "Value (?)")
+lines(rc0$`Demanda programada`$datetime, rc0$`Demanda programada`$value, 
+      type = "l", col = "blue", lty = 2)
+lines(rc0$`Demanda prevista`$datetime, rc0$`Demanda prevista`$value, 
+      type = "l", col = "red", lty = 3)
+abline(h = Sys.time(), col = "black")
+legend("topleft", legend = c("real", "foreseen", "programmed"), 
+       fill = c("black", "red", "blue"))
+```
+

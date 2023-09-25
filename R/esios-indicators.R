@@ -99,8 +99,8 @@ esios_indicators <- function(indicator, locale = NULL, datetime = NULL,
 #' @seealso [esios_indicators()]
 #' @export
 #' @examples
-#' e <- esios_pvp()
-esios_pvp <- function(locale = NULL, datetime = NULL,
+#' e <- esios_pvpc()
+esios_pvpc <- function(locale = NULL, datetime = NULL,
                       start_date =  NULL, end_date =  NULL,
                       time_agg = NULL, time_trunc = NULL, geo_agg = NULL,
                       geo_ids = NULL, geo_trunc = NULL) {
