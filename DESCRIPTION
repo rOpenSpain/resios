@@ -1,7 +1,7 @@
 Type: Package
 Package: resios
 Title: Interacts with REE and ESIOS API
-Version: 0.1.0.9000
+Version: 0.1.0.9001
 Authors@R: 
     person("Lluís", "Revilla Sancho", , "lluis.revilla@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-9747-2570"))
@@ -10,8 +10,8 @@ Description: Provides functions to retrieve and use easily data from Red
     grid in Spain. The REE also provides ESIOS from electronic-"Sistema de
     Información del Operador del Sistema", which is also covered here.
 License: MIT + file LICENSE
-URL: https://github.com/llrs/resios, https://llrs.github.io/resios/
-BugReports: https://github.com/llrs/resios/issues
+URL: https://github.com/ropenspain/resios, https://ropenspain.github.io/resios/
+BugReports: https://github.com/ropenspain/resios/issues
 Depends: 
     R (>= 4.2)
 Imports: 
