@@ -1,5 +1,6 @@
 url: https://llrs.github.io/resios/
 template:
+  package: rostemplate
   bootstrap: 5
 authors:
   Lluís Revilla Sancho:
