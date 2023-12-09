@@ -64,7 +64,7 @@ esios_search_indicators <- function(text = NULL, taxonomy_terms = NULL, taxonomy
 #' @examples
 #' \donttest{
 #' ei10001 <- esios_indicators(10001)
-#' ei1700 <- esios_indicators(1700)
+#' head(ei10001)
 #' }
 esios_indicators <- function(indicator, locale = NULL, datetime = NULL,
                              start_date =  NULL, end_date =  NULL,
@@ -81,7 +81,7 @@ esios_indicators <- function(indicator, locale = NULL, datetime = NULL,
                      time_agg = time_agg,
                      time_trunc = time_trunc,
                      geo_agg = geo_agg,
-                     `geo_ids[ ]` = geo_ids,
+                     `geo_ids[]` = geo_ids,
                      geo_trunc = geo_trunc) |>
     req_perform()
   resp_body_json(resp)
