@@ -7,6 +7,7 @@
 #' @examples
 #' \donttest{
 #' archives <- esios_archives()
+#' head(archives)
 #' }
 esios_archives <- function() {
   arch <- req_perform(prep_esios("archives"))
