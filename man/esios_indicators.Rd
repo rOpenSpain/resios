@@ -52,7 +52,7 @@ Retrieve the information of any indicator based on the id.
 \examples{
 \donttest{
 ei10001 <- esios_indicators(10001)
-ei1700 <- esios_indicators(1700)
+head(ei10001)
 }
 }
 \references{

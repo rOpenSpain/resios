@@ -26,12 +26,9 @@ esios_search_indicators <- function(text = NULL, taxonomy_terms = NULL, taxonomy
   indic <- do.call(rbind, lapply(out$indicators, list2DF))
   # Extract hour from the text
   s <- strsplit(indic$description, split = "Publicaci(&oacute;|\u00F3)n:")
+  s[lengths(s) == 0L] <- ""
   v <- mapply(getElement, s, lengths(s))
   r <- extract_hour(v)
-
-  if (length(r) != NROW(indic)) {
-    browser()
-  }
   indic$renew <- r
   indic
 }

@@ -11,9 +11,9 @@ Provides functions to retrieve and use easily data from Red Electrica Española 
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/llrs/resios}
-  \item \url{https://llrs.github.io/resios/}
-  \item Report bugs at \url{https://github.com/llrs/resios/issues}
+  \item \url{https://github.com/ropenspain/resios}
+  \item \url{https://ropenspain.github.io/resios/}
+  \item Report bugs at \url{https://github.com/ropenspain/resios/issues}
 }
 
 }

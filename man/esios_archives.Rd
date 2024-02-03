@@ -15,5 +15,6 @@ Check which archives are available.
 \examples{
 \donttest{
 archives <- esios_archives()
+head(archives)
 }
 }
