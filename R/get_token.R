@@ -10,7 +10,7 @@
 #' token <- get_token("aahdahgagdadfsafd")
 get_token <- function(token = NULL) {
   if (is.null(token)) {
-    token <- Sys.getenv("ESIOS_TOKEN", NA_character_)
+    token <- check_token()
   }
 
   if (is.na(token)) {
@@ -26,3 +26,6 @@ get_token <- function(token = NULL) {
 }
 
 
+check_token <- function() {
+  Sys.getenv("ESIOS_TOKEN", NA_character_)
+}
