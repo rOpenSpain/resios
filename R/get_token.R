@@ -29,3 +29,8 @@ get_token <- function(token = NULL) {
 check_token <- function() {
   Sys.getenv("ESIOS_TOKEN", NA_character_)
 }
+
+
+there_is_token <- function(token = NULL) {
+  !is.na(get_token(token))
+}

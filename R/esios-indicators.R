@@ -62,6 +62,7 @@ esios_search_indicators <- function(text = NULL, taxonomy_terms = NULL, taxonomy
 #' \donttest{
 #' ei10001 <- esios_indicators(10001)
 #' head(ei10001)
+#' dr <- esios_indicators(1293)
 #' }
 esios_indicators <- function(indicator, locale = NULL, datetime = NULL,
                              start_date =  NULL, end_date =  NULL,

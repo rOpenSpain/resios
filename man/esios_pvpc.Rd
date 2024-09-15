@@ -51,7 +51,9 @@ geo_id and geo_name.
 This is a shortcut for \code{esios_indicators("1001")} with some parsing.
 }
 \examples{
+\donttest{
 e <- esios_pvpc()
+}
 }
 \seealso{
 \code{\link[=esios_indicators]{esios_indicators()}}
