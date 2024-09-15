@@ -1,6 +1,10 @@
 # <https://api.esios.ree.es/doc/index.html>
 prep_esios <- function(path, ..., token = NULL) {
   token <- get_token(token)
+  if (!there_is_token(token)) {
+    return(FALSE)
+    warning("No token available")
+  }
   accept <- c("application/json",
               "application/vnd.esios-api-v2+json",
               "application/vnd.esios-api-v1+json")
@@ -12,7 +16,9 @@ prep_esios <- function(path, ..., token = NULL) {
     req_error(body = esios_error) |>
     req_headers(
       Accept = paste0(accept, collapse = "; "),
-      `x-api-key` = token
+      `Content-Type` = "application/json",
+      `x-api-key` = token,
+      .redact = "x-api-key"
     ) |>
     req_throttle(10 / 60)
 }
