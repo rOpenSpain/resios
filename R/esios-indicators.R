@@ -28,7 +28,7 @@ esios_search_indicators <- function(text = NULL, taxonomy_terms = NULL, taxonomy
   cols <- vapply(l, NCOL, numeric(1L))
   w <- which(cols < 4)
   l[w] <- lapply(l[w], function(x){
-    cbind(x[, 1], description = NA, x[, 2:ncol(x)])
+    cbind(x[, 1, drop = FALSE], description = NA, x[, 2:ncol(x)])
   })
   indic <- do.call(rbind, l)
   # Extract hour from the text
