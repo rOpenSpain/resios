@@ -53,6 +53,7 @@ Retrieve the information of any indicator based on the id.
 \donttest{
 ei10001 <- esios_indicators(10001)
 head(ei10001)
+dr <- esios_indicators(1293)
 }
 }
 \references{
