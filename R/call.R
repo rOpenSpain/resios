@@ -37,6 +37,17 @@ prep_ree <- function(path, ...) {
 }
 
 ree_error <- function(resp) {
+
+  type <- resp_content_type(resp)
+  if (identical(type, "text/html")) {
+    errors <- resp_body_html(resp)
+
+    if (requireNamespace("xml2", quietly = TRUE)) {
+      body <- xml2::xml_find_all(errors, xpath = "body/div/p")
+      errors_msg <- paste0(trimws(xml2::xml_text(body)))
+    }
+    return(errors_msg)
+  }
   errors <- resp_body_json(resp)$errors
   errors_msgs <- vapply(errors, function(x) {
     paste0(x["title"], " (", x["code"], "): ", x["detail"])
