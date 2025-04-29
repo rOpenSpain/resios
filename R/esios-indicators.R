@@ -23,7 +23,14 @@ esios_search_indicators <- function(text = NULL, taxonomy_terms = NULL, taxonomy
                     taxonomy_ids = taxonomy_ids) |>
     req_perform()
   out <- resp_body_json(ind)
-  indic <- do.call(rbind, lapply(out$indicators, list2DF))
+  l <- lapply(out$indicators, list2DF)
+  # Handle cases with missing description
+  cols <- vapply(l, NCOL, numeric(1L))
+  w <- which(cols < 4)
+  l[w] <- lapply(l[w], function(x){
+    cbind(x[, 1], description = NA, x[, 2:ncol(x)])
+  })
+  indic <- do.call(rbind, l)
   # Extract hour from the text
   s <- strsplit(indic$description, split = "Publicaci(&oacute;|\u00F3)n:")
   s[lengths(s) == 0L] <- ""
