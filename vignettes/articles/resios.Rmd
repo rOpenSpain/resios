@@ -28,7 +28,8 @@ head(ea)
 
 Besides the archives you can get daily data from the more than 1900 indicators available:
 
-```{r esios-indicators}
+```{r esios-indicators, eval=FALSE}
+# Will fail due to esios error on their server.
 ei_df <- esios_search_indicators()
 dim(ei_df)
 head(ei_df)

@@ -11,7 +11,7 @@
 #' @seealso [esios_indicators()]
 #' @examples
 #' \donttest{
-#' ei <- esios_search_indicators()
+#' # ei <- esios_search_indicators()
 #' mercados <- esios_search_indicators(text = "Mercados y precios")
 #' }
 esios_search_indicators <- function(text = NULL, taxonomy_terms = NULL, taxonomy_ids = NULL) {

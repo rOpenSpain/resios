@@ -25,7 +25,7 @@ Find which indicators are available.
 }
 \examples{
 \donttest{
-ei <- esios_search_indicators()
+# ei <- esios_search_indicators()
 mercados <- esios_search_indicators(text = "Mercados y precios")
 }
 }
