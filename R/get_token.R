@@ -1,6 +1,7 @@
 #' Get ESIOS token
 #'
-#' To get a token you need to ask for it.
+#' To get a token you need to ask for it via email.
+#' The token will be read from the system enviroment variable ESIOS_TOKEN.
 #'
 #' @param token The character string as a token
 #'

@@ -25,13 +25,19 @@ prep_esios <- function(path, ..., token = NULL) {
 
 # <https://www.ree.es/en/apidatos>
 prep_ree <- function(path, ...) {
+
+  token <- get_token()
+  if (is.na(token)) {
+    stop("Missing required personal token. Contact ESIOS to get yours.")
+  }
   request("https://apidatos.ree.es") |>
     req_user_agent(agent) |>
     req_url_query(...) |>
     req_url_path_append(path) |>
     req_method("GET") |>
     req_headers(Accept = "application/json;",
-                `Content-Type` = "application/json") |>
+                `Content-Type` = "application/json",
+                `x-api-key` = token) |>
     req_error(body = ree_error) |>
     req_throttle(10 / 60)
 }
