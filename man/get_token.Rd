@@ -13,7 +13,8 @@ get_token(token = NULL)
 Invisible the token
 }
 \description{
-To get a token you need to ask for it.
+To get a token you need to ask for it via email.
+The token will be read from the system enviroment variable ESIOS_TOKEN.
 }
 \examples{
 token <- get_token("aahdahgagdadfsafd")

@@ -62,6 +62,7 @@ esios_search_indicators <- function(text = NULL, taxonomy_terms = NULL, taxonomy
 #' when the geo_agg is informed. Accepted values: 'country', 'electric_system',
 #' 'autonomous_community', 'province', 'electric_subsystem', 'town' and
 #' 'drainage_basin'.
+#' @returns The output of any indicator requested.
 #' @export
 #' @seealso [esios_search_indicators()]
 #' @references <https://api.esios.ree.es/>

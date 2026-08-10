@@ -46,6 +46,9 @@ when the geo_agg is informed. Accepted values: 'country', 'electric_system',
 'autonomous_community', 'province', 'electric_subsystem', 'town' and
 'drainage_basin'.}
 }
+\value{
+The output of any indicator requested.
+}
 \description{
 Retrieve the information of any indicator based on the id.
 }
